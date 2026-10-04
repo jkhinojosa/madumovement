@@ -49,7 +49,7 @@ jobs:
           done
           echo ""
           echo "📋 Archivos a desplegar:"
-          ls -lh index.html style.css main.js *.png
+          ls -lh index.html style.css main.js *.png img/*.jpg
           echo "✅ Validación completada"
 
       # ── 3. Deploy vía SCP (SSH) a Hostinger ─────────────────
@@ -61,7 +61,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD || secrets.FTP_PASSWORD }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT || 65002 }}
-          source: "index.html,style.css,main.js,*.png"
+          source: "index.html,style.css,main.js,*.png,img/*"
           target: ${{ secrets.SSH_TARGET || secrets.FTP_PATH || 'public_html' }}
           overwrite: true
 
