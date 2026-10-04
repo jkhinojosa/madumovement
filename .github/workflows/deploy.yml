@@ -1,16 +1,18 @@
 # ═══════════════════════════════════════════════════════════════════════════
-# MADU — CI/CD Pipeline: GitHub → Hostinger (SFTP)
+# MADU — CI/CD Pipeline: GitHub → Hostinger (SSH / SCP)
 # ═══════════════════════════════════════════════════════════════════════════
-# Dispara un deploy automático a Hostinger cada vez que se hace push a main.
-# Usa SFTP (puerto 65002, estándar Hostinger) para subir los archivos.
+# Dispara un deploy automático a Hostinger vía SSH/SCP cada vez que se hace push a main.
+# Puerto predeterminado de Hostinger SSH: 65002
 #
-# REQUISITOS — Configurar estos Secrets en GitHub:
-#   Settings → Secrets and variables → Actions → New repository secret
+# REQUISITOS EN HOSTINGER:
+#   1. hPanel → Avanzado → Acceso SSH → Asegurarse de que esté "Habilitado".
 #
-#   FTP_SERVER    → Tu servidor SFTP (ej: ftp.tudominio.com o IP del hosting)
-#   FTP_USERNAME  → Tu usuario FTP/SFTP de Hostinger
-#   FTP_PASSWORD  → Tu contraseña FTP/SFTP
-#   FTP_PATH      → Ruta remota (normalmente /public_html/ o /domains/tudominio.com/public_html/)
+# REQUISITOS EN GITHUB (Settings → Secrets and variables → Actions):
+#   SSH_HOST (o FTP_SERVER)     → IP o Host de SSH de Hostinger
+#   SSH_USERNAME (o FTP_USERNAME) → Usuario SSH / cPanel
+#   SSH_PASSWORD (o FTP_PASSWORD) → Contraseña de SSH
+#   SSH_PORT                    → (Opcional, defecto 65002)
+#   SSH_TARGET (o FTP_PATH)     → (Opcional, defecto 'public_html')
 # ═══════════════════════════════════════════════════════════════════════════
 
 name: 🚀 Deploy MADU → Hostinger
@@ -20,15 +22,15 @@ on:
     branches: [main]
   workflow_dispatch:  # Permite deploy manual desde la UI de GitHub
 
-# Previene deploys simultáneos
 concurrency:
   group: deploy-production
   cancel-in-progress: true
 
 jobs:
   deploy:
-    name: 📦 Deploy to Hostinger
+    name: 📦 Deploy to Hostinger via SSH
     runs-on: ubuntu-latest
+
     steps:
       # ── 1. Checkout del código ──────────────────────────────
       - name: 📥 Checkout
@@ -47,36 +49,27 @@ jobs:
           done
           echo ""
           echo "📋 Archivos a desplegar:"
-          find . -not -path './.git/*' -not -path './.github/*' -not -name '.gitignore' -not -name '.DS_Store' -not -name 'implementation_plan.md' -not -path './test/*' -type f | sort
-          echo ""
+          ls -lh index.html style.css main.js *.png
           echo "✅ Validación completada"
 
-      # ── 3. Deploy vía FTPS a Hostinger ──────────────────────
-      - name: 🚀 Deploy via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      # ── 3. Deploy vía SCP (SSH) a Hostinger ─────────────────
+      - name: 🚀 Deploy via SCP (SSH)
+        uses: appleboy/scp-action@v1
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: ${{ secrets.FTP_PORT || 21 }}
-          server-dir: ${{ secrets.FTP_PATH || 'public_html/' }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            .gitignore
-            test/**
-            implementation_plan.md
-            SECURITY.md
-            .DS_Store
-            .htaccess/**
+          host: ${{ secrets.SSH_HOST || secrets.FTP_SERVER }}
+          username: ${{ secrets.SSH_USERNAME || secrets.FTP_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD || secrets.FTP_PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 65002 }}
+          source: "index.html,style.css,main.js,*.png"
+          target: ${{ secrets.SSH_TARGET || secrets.FTP_PATH || 'public_html' }}
+          overwrite: true
 
       # ── 4. Notificación de éxito ────────────────────────────
       - name: ✅ Deploy exitoso
         run: |
           echo "═══════════════════════════════════════════════════"
-          echo "  🎉 MADU desplegado exitosamente en Hostinger"
+          echo "  🎉 MADU desplegado exitosamente en Hostinger vía SSH"
           echo "  📅 $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           echo "  🔗 Commit: ${{ github.sha }}"
           echo "═══════════════════════════════════════════════════"
