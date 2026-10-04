@@ -1,0 +1,84 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# MADU — CI/CD Pipeline: GitHub → Hostinger (SFTP)
+# ═══════════════════════════════════════════════════════════════════════════
+# Dispara un deploy automático a Hostinger cada vez que se hace push a main.
+# Usa SFTP (puerto 65002, estándar Hostinger) para subir los archivos.
+#
+# REQUISITOS — Configurar estos Secrets en GitHub:
+#   Settings → Secrets and variables → Actions → New repository secret
+#
+#   FTP_SERVER    → Tu servidor SFTP (ej: ftp.tudominio.com o IP del hosting)
+#   FTP_USERNAME  → Tu usuario FTP/SFTP de Hostinger
+#   FTP_PASSWORD  → Tu contraseña FTP/SFTP
+#   FTP_PATH      → Ruta remota (normalmente /public_html/ o /domains/tudominio.com/public_html/)
+# ═══════════════════════════════════════════════════════════════════════════
+
+name: 🚀 Deploy MADU → Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Permite deploy manual desde la UI de GitHub
+
+# Previene deploys simultáneos
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: 📦 Deploy to Hostinger
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      # ── 1. Checkout del código ──────────────────────────────
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Validar que los archivos críticos existen ────────
+      - name: ✅ Validate build
+        run: |
+          echo "🔍 Validando archivos del sitio..."
+          for file in index.html style.css main.js; do
+            if [ ! -f "$file" ]; then
+              echo "❌ ERROR: $file no encontrado"
+              exit 1
+            fi
+            echo "  ✅ $file ($(wc -c < $file) bytes)"
+          done
+          echo ""
+          echo "📋 Archivos a desplegar:"
+          find . -not -path './.git/*' -not -path './.github/*' -not -name '.gitignore' -not -name '.DS_Store' -not -name 'implementation_plan.md' -not -path './test/*' -type f | sort
+          echo ""
+          echo "✅ Validación completada"
+
+      # ── 3. Deploy vía SFTP a Hostinger ──────────────────────
+      - name: 🚀 Deploy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 65002  # Puerto SFTP estándar de Hostinger
+          protocol: ftps
+          server-dir: ${{ secrets.FTP_PATH }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            .gitignore
+            test/**
+            implementation_plan.md
+            SECURITY.md
+            .DS_Store
+            .htaccess/**
+
+      # ── 4. Notificación de éxito ────────────────────────────
+      - name: ✅ Deploy exitoso
+        run: |
+          echo "═══════════════════════════════════════════════════"
+          echo "  🎉 MADU desplegado exitosamente en Hostinger"
+          echo "  📅 $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "  🔗 Commit: ${{ github.sha }}"
+          echo "═══════════════════════════════════════════════════"

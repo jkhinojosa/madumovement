@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MADU — Escuela de Parkour y Movimiento · Quito</title>
+  <meta name="description" content="MADU: Escuela de Parkour y Movimiento en Quito, Ecuador. Parkour, Artes Circenses, Danza Contemporánea, Tai Chi y más. Tu primera clase es gratis."/>
+
+  <!-- ══ SECURITY HEADERS (ASVS V14.4.1–V14.4.6) ══════════════════════════ -->
+  <!-- F-01 · F-02: Content Security Policy — previene XSS e inyección de scripts -->
+  <!-- F-01 · F-02: CSP actualizada — APIs externas aprobadas (Human-in-the-loop) ──
+       ✅ instagram.com/embed.js        → Renderiza embeds de Posts/Reels
+       ✅ connect.facebook.net/fbevents  → Meta Pixel (analytics/conversiones)
+       ✅ graph.facebook.com             → Instagram Graph API (feed/stories)
+       ✅ static.elfsight.com            → Widget de feed/stories de Instagram
+       ✅ elfsightcdn.com                → CDN plataforma Elfsight (scripts)
+       ✅ core.service.elfsight.com      → API de servicio Elfsight (datos feed)
+       ✅ widgets.sociablekit.com        → Widget alternativo de stories
+  ──────────────────────────────────────────────────────────────────────── -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src 'self' https://unpkg.com https://www.instagram.com https://connect.facebook.net https://static.elfsight.com https://elfsightcdn.com https://widgets.sociablekit.com;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                 font-src https://fonts.gstatic.com;
+                 img-src 'self' data: blob: https://scontent.cdninstagram.com https://*.fbcdn.net https://*.instagram.com;
+                 frame-src https://www.google.com https://www.instagram.com https://static.elfsight.com https://elfsightcdn.com;
+                 connect-src 'self' https://graph.facebook.com https://connect.facebook.net https://static.elfsight.com https://elfsightcdn.com https://core.service.elfsight.com;
+                 object-src 'none';
+                 base-uri 'self';
+                 form-action 'self'">
+  <!-- F-01: Previene clickjacking (X-Frame-Options vía meta equiv) -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <!-- F-01: Previene MIME-type sniffing -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <!-- F-01: Controla información de referrer enviada a terceros -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <!-- F-01: Restringe acceso a APIs sensibles del navegador -->
+  <meta http-equiv="Permissions-Policy"
+        content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <link rel="stylesheet" href="style.css"/>
+  <!-- F-03: Lucide fijado a v0.468.0 con Subresource Integrity (SRI) — ASVS V14.2.3 -->
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
+          integrity="sha384-uTYyvsSSUZeaPhb5RbKlQa0zY/WpX/QHfvg2mczXyBQOpkWPEDy9lczyp+w7SKXu"
+          crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+<div class="scanline"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo"><img src="logo_tomate_vertical.png" alt="MADU"/></a>
+  <div class="nav-links">
+    <a href="#clases">CLASES</a>
+    <a href="#horarios">HORARIOS</a>
+    <a href="#comunidad">COMUNIDAD</a>
+    <a href="#instagram">INSTAGRAM</a>
+    <a href="#contacto">CONTACTO</a>
+    <a href="#" data-wa class="btn-unete">ÚNETE</a>
+  </div>
+  <button class="menu-btn" id="menu-btn"><i data-lucide="menu" width="28" height="28"></i></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="menu-close"><i data-lucide="x" width="32" height="32"></i></button>
+  <a href="#clases">CLASES</a>
+  <a href="#horarios">HORARIOS</a>
+  <a href="#comunidad">COMUNIDAD</a>
+  <a href="#instagram">INSTAGRAM</a>
+  <a href="#contacto">CONTACTO</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="particles"></canvas>
+  <div class="hero-glow"></div>
+  <div style="position:absolute;top:30%;left:0;right:0;height:1px;background:rgba(255,80,0,.06);z-index:1"></div>
+  <div style="position:absolute;top:70%;left:0;right:0;height:1px;background:rgba(255,80,0,.06);z-index:1"></div>
+
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="logo_bicolor.png" alt="MADU Escuela de Parkour y Movimiento"/>
+    </div>
+    <div class="hero-text">
+      <p class="hero-sub">MOVIMIENTO · ADAPTACIÓN · DESPLAZAMIENTO · URBANO</p>
+      <div class="hero-btns">
+        <a href="#" data-wa class="btn-primary">CLASE DE PRUEBA GRATIS</a>
+        <a href="#clases" class="btn-ghost">VER CLASES ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-chevron"><i data-lucide="chevron-down" width="36" height="36"></i></div>
+  <div class="hero-tag">@MADU_MOVEMENT</div>
+</section>
+
+<!-- MADU ACRONYM -->
+<section class="acronym-section">
+  <div class="container">
+    <div class="reveal mb-72">
+      <p class="section-label">¿QUÉ SIGNIFICA MADU?</p>
+      <h2 class="section-title">MÁS QUE UN NOMBRE<br><span>UNA FILOSOFÍA DE VIDA</span></h2>
+    </div>
+    <div class="acronym-grid">
+      <div class="acronym-card reveal">
+        <div class="acronym-letter">M</div>
+        <div class="acronym-word">MOVIMIENTO</div>
+        <p class="acronym-desc">El parkour como forma de vida y máxima expresión del cuerpo humano en libertad total.</p>
+      </div>
+      <div class="acronym-card reveal">
+        <div class="acronym-letter">A</div>
+        <div class="acronym-word">ADAPTACIÓN</div>
+        <p class="acronym-desc">Cada obstáculo es oportunidad. Nos adaptamos al entorno, a los desafíos, a nosotros mismos.</p>
+      </div>
+      <div class="acronym-card reveal">
+        <div class="acronym-letter">D</div>
+        <div class="acronym-word">DESPLAZAMIENTO</div>
+        <p class="acronym-desc">De A a B de la forma más eficiente, creativa y libre posible. El camino importa tanto como el destino.</p>
+      </div>
+      <div class="acronym-card reveal">
+        <div class="acronym-letter">U</div>
+        <div class="acronym-word">URBANO</div>
+        <p class="acronym-desc">La ciudad es nuestro gimnasio. Cada pared, borde y espacio es un campo de entrenamiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl">NIVELES DE PARKOUR</div></div>
+  <div class="stat-item"><div class="stat-num">5+</div><div class="stat-lbl">DISCIPLINAS DISTINTAS</div></div>
+  <div class="stat-item"><div class="stat-num">7</div><div class="stat-lbl">DÍAS A LA SEMANA</div></div>
+  <div class="stat-item"><div class="stat-num">∞</div><div class="stat-lbl">LÍMITES QUE ROMPER</div></div>
+  <div class="stat-item"><div class="stat-num">1</div><div class="stat-lbl">PRUEBA GRATIS</div></div>
+</div>
+
+<!-- CLASES -->
+<section id="clases" class="classes-section">
+  <div class="container">
+    <div class="reveal mb-72">
+      <p class="section-label">DISCIPLINAS</p>
+      <h2 class="section-title">NUESTRAS CLASES</h2>
+    </div>
+    <div class="classes-grid">
+
+      <div class="class-card reveal">
+        <div class="class-inner">
+          <div class="class-header">
+            <div>
+              <div class="class-code" style="color:#FF5000">PK</div>
+              <div class="class-name">Parkour</div>
+              <div class="class-tag">NIVELES 1 – 6</div>
+            </div>
+            <span class="class-emoji">🦍</span>
+          </div>
+          <p class="class-desc">Domina el arte del movimiento libre. Seis niveles de progresión que llevan tu cuerpo desde los fundamentos hasta técnicas avanzadas de desplazamiento urbano.</p>
+          <div class="class-footer" style="border-top:1px solid #1e1e1e;padding-top:20px">
+            <span class="class-when">Lu · Mi · Vi 07:00 + tarde</span>
+            <a href="#" data-wa class="class-cta" style="color:#FF5000">RESERVAR →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="class-card reveal">
+        <div class="class-inner">
+          <div class="class-header">
+            <div>
+              <div class="class-code" style="color:#9333EA">CIRCO</div>
+              <div class="class-name">Artes Circenses</div>
+              <div class="class-tag">LU Y MI · 09:00–11:00</div>
+            </div>
+            <span class="class-emoji">🎪</span>
+          </div>
+          <p class="class-desc">Acrobacia, malabares y fuerza. El circo como lenguaje del cuerpo que desafía la gravedad y expande lo que creías posible.</p>
+          <div class="class-footer">
+            <span class="class-when">Lunes y Miércoles 09:00 – 11:00</span>
+            <a href="#" data-wa class="class-cta" style="color:#9333EA">RESERVAR →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="class-card reveal">
+        <div class="class-inner">
+          <div class="class-header">
+            <div>
+              <div class="class-code" style="color:#DB2777">DANZA CONTEMP.</div>
+              <div class="class-name">Danza Contemporánea</div>
+              <div class="class-tag">NIVELES 1 Y 2</div>
+            </div>
+            <span class="class-emoji">💃</span>
+          </div>
+          <p class="class-desc">Fluidez, expresión y conexión. Explora el movimiento orgánico, la improvisación y la técnica contemporánea para conectar cuerpo y emoción.</p>
+          <div class="class-footer">
+            <span class="class-when">Ma · Ju 09:00 | Lu · Vi 18:00</span>
+            <a href="#" data-wa class="class-cta" style="color:#DB2777">RESERVAR →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="class-card reveal">
+        <div class="class-inner">
+          <div class="class-header">
+            <div>
+              <div class="class-code" style="color:#0891B2">TAI CHI</div>
+              <div class="class-name">Tai Chi Chuan</div>
+              <div class="class-tag">MEDITACIÓN EN MOVIMIENTO</div>
+            </div>
+            <span class="class-emoji">☯️</span>
+          </div>
+          <p class="class-desc">Equilibrio físico y mental. Un espacio para conectar con el aquí y ahora, cultivar paz interior y vitalidad profunda.</p>
+          <div class="class-footer">
+            <span class="class-when">Martes y Jueves 11:00 – 12:30</span>
+            <a href="#" data-wa class="class-cta" style="color:#0891B2">RESERVAR →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="class-card reveal">
+        <div class="class-inner">
+          <div class="class-header">
+            <div>
+              <div class="class-code" style="color:#D97706">OPEN GYM</div>
+              <div class="class-name">Open Gym</div>
+              <div class="class-tag">LIBRE · SIN INSTRUCTOR</div>
+            </div>
+            <span class="class-emoji">⚡</span>
+          </div>
+          <p class="class-desc">El espacio es tuyo. Entrena a tu ritmo, explora, crea. Para quienes ya tienen base y quieren sesiones sin guía.</p>
+          <div class="class-footer">
+            <span class="class-when">Viernes 17:00</span>
+            <a href="#" data-wa class="class-cta" style="color:#D97706">RESERVAR →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HORARIOS -->
+<section id="horarios" class="schedule-section">
+  <div class="container">
+    <div class="reveal mb-64">
+      <p class="section-label">PROGRAMACIÓN SEMANAL</p>
+      <h2 class="section-title">HORARIOS</h2>
+    </div>
+    <div class="sched-scroll reveal">
+      <div class="sched-grid" id="sched-grid"></div>
+    </div>
+    <div class="legend reveal">
+      <div class="legend-item"><div class="legend-dot" style="background:#FF5000"></div><span class="legend-lbl">PARKOUR</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#9333EA"></div><span class="legend-lbl">CIRCO</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#DB2777"></div><span class="legend-lbl">DANZA CONTEMPORÁNEA</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#0891B2"></div><span class="legend-lbl">TAI CHI</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#D97706"></div><span class="legend-lbl">OPEN GYM</span></div>
+    </div>
+    <div class="sched-cta reveal">
+      <a href="#" data-wa class="btn-outline">¿TIENES DUDAS? ESCRÍBENOS →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDAD -->
+<section id="comunidad" class="community-section">
+  <div class="community-ghost">COMUNIDAD</div>
+  <div class="community-inner">
+    <div class="reveal">
+      <p class="section-label">NUESTRA FILOSOFÍA</p>
+      <h2 class="big-title">NO COMPITES<br>CONTRA OTROS</h2>
+      <div class="pullquote">
+        <span class="pullquote-mark">"</span>
+        <p class="pullquote-text">COMPITES CONTRA TU<br>VERSIÓN DE AYER</p>
+      </div>
+      <p class="community-body">En MADU somos comunidad. Entrenamos juntos, crecemos juntos, caemos y nos levantamos juntos. El parkour no es una competición, es un viaje personal compartido.</p>
+      <div class="values">
+        <div class="value-item"><div class="value-line"></div><span class="value-label">RESPETO</span></div>
+        <div class="value-item"><div class="value-line"></div><span class="value-label">PROGRESIÓN</span></div>
+        <div class="value-item"><div class="value-line"></div><span class="value-label">COMUNIDAD</span></div>
+        <div class="value-item"><div class="value-line"></div><span class="value-label">LIBERTAD</span></div>
+        <div class="value-item"><div class="value-line"></div><span class="value-label">CREATIVIDAD</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM FEED ──────────────────────────────────────────── -->
+<section id="instagram" class="ig-section">
+  <div class="container">
+    <div class="reveal mb-72">
+      <p class="section-label">SÍGUENOS</p>
+      <h2 class="section-title">LO ÚLTIMO EN <span>INSTAGRAM</span></h2>
+    </div>
+
+    <!-- IG Reels embebidos — oEmbed nativo (gratis, oficial Meta) -->
+    <div class="ig-reels-row reveal">
+      <p class="ig-reels-hint">
+        <i data-lucide="instagram" width="18" height="18"></i>
+        Reels destacados de @MADU_MOVEMENT
+      </p>
+      <div class="ig-reels-grid" id="ig-reels-grid">
+        <!-- Los embeds se inyectan dinámicamente desde main.js -->
+        <!-- Placeholder mientras no hay embeds reales configurados -->
+        <div class="ig-placeholder-card">
+          <div class="ig-placeholder-icon">🎬</div>
+          <p class="ig-placeholder-text">Conecta tus Reels de Instagram</p>
+          <span class="ig-placeholder-sub">Configura los URLs de tus Reels en main.js</span>
+        </div>
+        <div class="ig-placeholder-card">
+          <div class="ig-placeholder-icon">🦍</div>
+          <p class="ig-placeholder-text">Parkour en acción</p>
+          <span class="ig-placeholder-sub">Tus mejores momentos aquí</span>
+        </div>
+        <div class="ig-placeholder-card">
+          <div class="ig-placeholder-icon">🔥</div>
+          <p class="ig-placeholder-text">Entrena con MADU</p>
+          <span class="ig-placeholder-sub">Comparte tu progreso</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Widget de Feed — Elfsight (auto-refresco, tokens gestionados por ellos) -->
+    <div class="ig-feed-widget reveal">
+      <p class="ig-feed-hint">
+        <i data-lucide="grid-3x3" width="16" height="16"></i>
+        Feed en vivo
+      </p>
+
+      <!--
+        ╔═══════════════════════════════════════════════════════════════╗
+        ║  CÓMO ACTIVAR EL FEED AUTOMÁTICO (5 minutos):               ║
+        ║                                                               ║
+        ║  1. Ve a https://elfsight.com/instagram-feed-widget/          ║
+        ║  2. Click "Create widget for free"                            ║
+        ║  3. Elige layout (Grid recomendado, 3 columnas, dark mode)    ║
+        ║  4. En "Content" → Source: Account → @madu_movement           ║
+        ║  5. Click "Add to website" → Crea tu cuenta gratis            ║
+        ║  6. Copia SOLO el ID (ej: "abcd1234-5678-90ef")              ║
+        ║  7. Pega el ID abajo reemplazando PEGA_TU_ID_AQUI            ║
+        ║  8. ¡Listo! El feed se refresca solo cada vez que publicas    ║
+        ║                                                               ║
+        ║  Plan gratuito: 1 widget, 200 vistas/mes                      ║
+        ║  Plan Basic ($5/mes): sin marca de agua, 5,000 vistas/mes     ║
+        ╚═══════════════════════════════════════════════════════════════╝
+      -->
+
+      <!-- Widget Elfsight — Feed de Instagram MADU activo -->
+      <div class="elfsight-app-14224253-dcc5-4487-bcc9-da0b5608db01" data-elfsight-app-lazy></div>
+
+      <!-- Placeholder (se oculta automáticamente cuando Elfsight carga) -->
+      <div class="ig-feed-placeholder" id="ig-feed-placeholder">
+        <div class="ig-feed-grid-placeholder">
+          <div class="ig-cell"></div><div class="ig-cell"></div><div class="ig-cell"></div>
+          <div class="ig-cell"></div><div class="ig-cell"></div><div class="ig-cell"></div>
+        </div>
+        <div class="ig-feed-activate">
+          <p class="ig-feed-activate-title">
+            <i data-lucide="instagram" width="20" height="20"></i>
+            Activa tu feed en 5 minutos
+          </p>
+          <ol class="ig-feed-steps">
+            <li>Ve a <strong>elfsight.com/instagram-feed-widget</strong></li>
+            <li>Conecta <strong>@madu_movement</strong></li>
+            <li>Copia tu App ID</li>
+            <li>Pégalo en <strong>index.html línea ~351</strong></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Instagram -->
+    <div class="ig-cta reveal">
+      <a href="https://instagram.com/madu_movement" target="_blank" rel="noreferrer" class="btn-ig">
+        <i data-lucide="instagram" width="22" height="22"></i>
+        SEGUIR A @MADU_MOVEMENT
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAR -->
+<div class="cta-bar">
+  <h3 class="cta-title">EMPIEZA HOY.<br>TU PRIMERA CLASE ES GRATIS.</h3>
+  <a href="#" data-wa class="btn-dark">HABLA CON NOSOTROS →</a>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contact-section">
+  <div class="container">
+    <div class="reveal mb-72">
+      <p class="section-label">ENCUÉNTRANOS</p>
+      <h2 class="section-title">CONTÁCTANOS</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-item">
+          <p class="contact-label">WHATSAPP</p>
+          <a href="#" data-wa class="contact-link" data-hover-color="#25D366" data-base-color="#fff">
+            <i data-lucide="phone" width="22" height="22"></i>
+            <span>098 821 9741</span>
+          </a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">INSTAGRAM</p>
+          <a href="https://instagram.com/madu_movement" target="_blank" rel="noreferrer" class="contact-link" data-hover-color="#E1306C" data-base-color="#fff">
+            <i data-lucide="instagram" width="22" height="22"></i>
+            <span>@MADU_MOVEMENT</span>
+          </a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">UBICACIÓN</p>
+          <a href="#" data-maps class="contact-link" data-hover-color="#FF5000" data-base-color="#fff">
+            <i data-lucide="map-pin" width="22" height="22"></i>
+            <span>LUIS CORDERO · QUITO</span>
+          </a>
+        </div>
+        <a href="#" data-wa class="btn-wa">↗ ESCRÍBENOS AHORA</a>
+      </div>
+      <div class="map-wrap reveal">
+        <!-- F-05: sandbox restringe capacidades del iframe — ASVS V13.4.1 -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8!2d-78.4944719!3d-0.1995883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59b0049765f31%3A0xe0e83724c9312d1e!2sMADU%20Escuela%20de%20parkour%20y%20movimiento%20(gym)!5e0!3m2!1ses!2sec!4v1696300000000"
+          width="100%" height="460"
+          sandbox="allow-scripts allow-same-origin"
+          referrerpolicy="no-referrer"
+          loading="lazy" title="MADU Quito — Escuela de Parkour · Luis Cordero"></iframe>
+        <a href="#" data-maps class="map-link">
+          <i data-lucide="map-pin" width="16" height="16"></i> VER EN GOOGLE MAPS →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">MA<span>DU</span></div>
+      <p class="footer-sub">ESCUELA DE PARKOUR Y MOVIMIENTO</p>
+      <p class="footer-sub2">MOVIMIENTO · ADAPTACIÓN · DESPLAZAMIENTO · URBANO</p>
+    </div>
+    <div class="footer-icons">
+      <a href="https://instagram.com/madu_movement" target="_blank" rel="noreferrer" data-hover-color="#E1306C" data-base-color="#2a2a2a"><i data-lucide="instagram" width="20" height="20"></i></a>
+      <a href="#" data-wa data-hover-color="#25D366" data-base-color="#2a2a2a"><i data-lucide="phone" width="20" height="20"></i></a>
+      <a href="#" data-maps data-hover-color="#FF5000" data-base-color="#2a2a2a"><i data-lucide="map-pin" width="20" height="20"></i></a>
+    </div>
+    <p class="footer-copy">© 2026 MADU — Quito, Ecuador</p>
+  </div>
+</footer>
+
+<!-- FAB WhatsApp -->
+<a href="#" data-wa class="fab"><i data-lucide="phone" width="26" height="26"></i></a>
+
+<!-- ══ COOKIE CONSENT BANNER (LOPDP Ecuador) ═════════════════════════════
+     Requerido por el Meta Pixel. Muestra un banner no intrusivo pidiendo
+     consentimiento antes de cargar scripts de tracking.
+     ══════════════════════════════════════════════════════════════════════ -->
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Consentimiento de cookies">
+  <div class="cookie-inner">
+    <p class="cookie-text">
+      <i data-lucide="shield-check" width="18" height="18"></i>
+      Usamos cookies de análisis (Meta Pixel) para mejorar tu experiencia y medir el tráfico desde Instagram.
+      No compartimos datos personales con terceros.
+    </p>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-accept" id="cookie-accept">ACEPTAR</button>
+      <button class="cookie-btn cookie-reject" id="cookie-reject">RECHAZAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- Instagram Embed.js — renderiza los blockquotes de Instagram -->
+<script async src="https://www.instagram.com/embed.js"></script>
+
+<!-- Elfsight Platform — renderiza el widget de feed de Instagram -->
+<!-- API: Carga el motor de widgets de Elfsight. Busca divs con clase
+     "elfsight-app-XXXX" y los reemplaza con el widget configurado.
+     Los tokens de Instagram son gestionados por Elfsight (nunca expuestos).
+     El feed se actualiza automáticamente cuando publicas nuevo contenido. -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+
+<script src="main.js"></script>
+</body>
+</html>
