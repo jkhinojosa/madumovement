@@ -174,37 +174,7 @@ footer { border-top:1px solid #111;padding:52px 40px;background:#000; }
 .ig-section { padding:110px 40px;background:#000;position:relative;overflow:hidden; }
 .ig-section::before { content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:2px;background:linear-gradient(90deg,transparent,#E1306C,#FF5000,#FCAF45,transparent); }
 
-.ig-reels-row { margin-bottom:64px; }
-.ig-reels-hint { display:flex;align-items:center;gap:10px;color:#555;font-size:13px;letter-spacing:3px;font-weight:600;margin-bottom:24px;text-transform:uppercase; }
-.ig-reels-hint svg { color:#E1306C; }
-.ig-reels-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
-.ig-reel-card { display:block;position:relative;aspect-ratio:9/13;overflow:hidden;border:1px solid #1a1a1a;background:#0d0d0d;text-decoration:none;transition:transform .4s cubic-bezier(.16,1,.3,1), border-color .4s; }
-.ig-reel-card:hover { transform:translateY(-8px);border-color:#E1306C66;box-shadow:0 16px 40px rgba(0,0,0,.6); }
-.ig-reel-thumb { position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s cubic-bezier(.16,1,.3,1); }
-.ig-reel-card:hover .ig-reel-thumb { transform:scale(1.08); }
-.ig-reel-overlay { position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.1) 40%,rgba(0,0,0,.9) 100%);display:flex;flex-direction:column;justify-content:space-between;padding:20px;z-index:2; }
-.ig-reel-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;padding:4px 10px;align-self:flex-start; }
-.ig-reel-badge svg { color:#E1306C; }
-.ig-reel-play { width:52px;height:52px;border-radius:50%;background:rgba(255,80,0,.9);color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;box-shadow:0 4px 24px rgba(255,80,0,.5);transition:all .3s ease; }
-.ig-reel-card:hover .ig-reel-play { transform:scale(1.15);background:#E1306C;box-shadow:0 4px 30px rgba(225,48,108,.7); }
-.ig-reel-play svg { margin-left:3px; }
-.ig-reel-info { margin-top:auto; }
-.ig-reel-title { font-family:'Barlow',sans-serif;font-weight:700;font-size:16px;color:#fff;margin-bottom:4px;line-height:1.3; }
-.ig-reel-author { font-size:12px;color:#FF5000;letter-spacing:2px;font-family:'Bebas Neue',sans-serif; }
-
-.ig-feed-widget { margin-bottom:56px; }
-.ig-feed-hint { display:flex;align-items:center;gap:10px;color:#555;font-size:13px;letter-spacing:3px;font-weight:600;margin-bottom:20px;text-transform:uppercase; }
-.ig-feed-hint svg { color:#FF5000; }
-
-.ig-gallery-grid { display:grid;grid-template-columns:repeat(6,1fr);gap:12px; }
-.ig-gallery-item { position:relative;aspect-ratio:1;overflow:hidden;background:#111;border:1px solid #1a1a1a;display:block;text-decoration:none; }
-.ig-gallery-item img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1); }
-.ig-gallery-overlay { position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;transition:opacity .3s ease;color:#fff;text-align:center;padding:12px; }
-.ig-gallery-overlay svg { color:#E1306C;transition:transform .3s; }
-.ig-gallery-overlay span { font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:#fff; }
-.ig-gallery-item:hover img { transform:scale(1.1); }
-.ig-gallery-item:hover .ig-gallery-overlay { opacity:1; }
-.ig-gallery-item:hover .ig-gallery-overlay svg { transform:scale(1.2); }
+.ig-feed-widget { margin-bottom:56px;min-height:320px;position:relative; }
 
 .ig-cta { text-align:center; }
 .btn-ig { display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,#833AB4,#E1306C,#FF5000,#FCAF45);color:#fff;padding:20px 56px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:5px;text-decoration:none;transition:all .4s;position:relative;overflow:hidden; }
@@ -220,7 +190,5 @@ footer { border-top:1px solid #111;padding:52px 40px;background:#000; }
   .acronym-grid { grid-template-columns:repeat(2,1fr); }
   .contact-grid { grid-template-columns:1fr; gap:40px; }
   nav { padding:18px 20px; }
-  .ig-reels-grid { grid-template-columns:1fr; }
-  .ig-gallery-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
   .ig-section { padding:80px 20px; }
 }

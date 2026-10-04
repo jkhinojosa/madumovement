@@ -19,12 +19,12 @@
   ──────────────────────────────────────────────────────────────────────── -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
-                 script-src 'self' https://unpkg.com https://www.instagram.com https://connect.facebook.net https://static.elfsight.com https://elfsightcdn.com https://widgets.sociablekit.com;
-                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-                 font-src https://fonts.gstatic.com;
-                 img-src 'self' data: blob: https://scontent.cdninstagram.com https://*.fbcdn.net https://*.instagram.com;
-                 frame-src https://www.google.com https://www.instagram.com https://static.elfsight.com https://elfsightcdn.com;
-                 connect-src 'self' https://graph.facebook.com https://connect.facebook.net https://static.elfsight.com https://elfsightcdn.com https://core.service.elfsight.com;
+                 script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://www.instagram.com https://connect.facebook.net https://*.elfsight.com https://*.elfsightcdn.com https://elfsightcdn.com;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.elfsightcdn.com https://*.elfsight.com;
+                 font-src 'self' data: https://fonts.gstatic.com https://*.elfsightcdn.com;
+                 img-src 'self' data: blob: https://*.cdninstagram.com https://*.fbcdn.net https://*.instagram.com https://*.elfsight.com https://*.elfsightcdn.com;
+                 frame-src https://www.google.com https://www.instagram.com https://*.elfsight.com https://*.elfsightcdn.com;
+                 connect-src 'self' https://*.elfsight.com https://*.elfsightcdn.com https://core.service.elfsight.com https://graph.facebook.com https://connect.facebook.net;
                  object-src 'none';
                  base-uri 'self';
                  form-action 'self'">
@@ -296,108 +296,10 @@
       <h2 class="section-title">LO ÚLTIMO EN <span>INSTAGRAM</span></h2>
     </div>
 
-    <!-- Reels destacados -->
-    <div class="ig-reels-row reveal">
-      <p class="ig-reels-hint">
-        <i data-lucide="play-circle" width="18" height="18"></i>
-        REELS DESTACADOS DE @MADU_MOVEMENT
-      </p>
-      <div class="ig-reels-grid">
-        <a href="https://www.instagram.com/reel/DdxmBQquYiJ/" target="_blank" rel="noopener noreferrer" class="ig-reel-card">
-          <div class="ig-reel-thumb" style="background-image: url('img/ig_1.jpg');"></div>
-          <div class="ig-reel-overlay">
-            <span class="ig-reel-badge"><i data-lucide="film" width="13" height="13"></i> REEL</span>
-            <div class="ig-reel-play">
-              <i data-lucide="play" width="28" height="28"></i>
-            </div>
-            <div class="ig-reel-info">
-              <p class="ig-reel-title">Flow, Saltos & Precisión Urbana</p>
-              <span class="ig-reel-author">@madu_movement ↗</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/reel/DdxWZyEJwN9/" target="_blank" rel="noopener noreferrer" class="ig-reel-card">
-          <div class="ig-reel-thumb" style="background-image: url('img/ig_2.jpg');"></div>
-          <div class="ig-reel-overlay">
-            <span class="ig-reel-badge"><i data-lucide="film" width="13" height="13"></i> REEL</span>
-            <div class="ig-reel-play">
-              <i data-lucide="play" width="28" height="28"></i>
-            </div>
-            <div class="ig-reel-info">
-              <p class="ig-reel-title">Acrobacias & Telas Aéreas</p>
-              <span class="ig-reel-author">@madu_movement ↗</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/reel/Ddty3r6u84m/" target="_blank" rel="noopener noreferrer" class="ig-reel-card">
-          <div class="ig-reel-thumb" style="background-image: url('img/ig_3.jpg');"></div>
-          <div class="ig-reel-overlay">
-            <span class="ig-reel-badge"><i data-lucide="film" width="13" height="13"></i> REEL</span>
-            <div class="ig-reel-play">
-              <i data-lucide="play" width="28" height="28"></i>
-            </div>
-            <div class="ig-reel-info">
-              <p class="ig-reel-title">Comunidad & Danza en MADU</p>
-              <span class="ig-reel-author">@madu_movement ↗</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- Galería / Grid -->
+    <!-- Elfsight Instagram Feed | madu -->
     <div class="ig-feed-widget reveal">
-      <p class="ig-feed-hint">
-        <i data-lucide="grid-3x3" width="16" height="16"></i>
-        MOMENTOS EN EL GYM
-      </p>
-
-      <div class="ig-gallery-grid">
-        <a href="https://www.instagram.com/madu_movement/" target="_blank" rel="noopener noreferrer" class="ig-gallery-item">
-          <img src="img/ig_1.jpg" alt="Parkour MADU Quito" loading="lazy">
-          <div class="ig-gallery-overlay">
-            <i data-lucide="instagram" width="26" height="26"></i>
-            <span>VER EN INSTAGRAM ↗</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/madu_movement/" target="_blank" rel="noopener noreferrer" class="ig-gallery-item">
-          <img src="img/ig_2.jpg" alt="Circo y Telas MADU" loading="lazy">
-          <div class="ig-gallery-overlay">
-            <i data-lucide="instagram" width="26" height="26"></i>
-            <span>VER EN INSTAGRAM ↗</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/madu_movement/" target="_blank" rel="noopener noreferrer" class="ig-gallery-item">
-          <img src="img/ig_3.jpg" alt="Danza Contemporánea MADU" loading="lazy">
-          <div class="ig-gallery-overlay">
-            <i data-lucide="instagram" width="26" height="26"></i>
-            <span>VER EN INSTAGRAM ↗</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/madu_movement/" target="_blank" rel="noopener noreferrer" class="ig-gallery-item">
-          <img src="img/ig_4.jpg" alt="Entrenamiento Parkour" loading="lazy">
-          <div class="ig-gallery-overlay">
-            <i data-lucide="instagram" width="26" height="26"></i>
-            <span>VER EN INSTAGRAM ↗</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/madu_movement/" target="_blank" rel="noopener noreferrer" class="ig-gallery-item">
-          <img src="img/ig_5.jpg" alt="Acrobacias Aéreas" loading="lazy">
-          <div class="ig-gallery-overlay">
-            <i data-lucide="instagram" width="26" height="26"></i>
-            <span>VER EN INSTAGRAM ↗</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/madu_movement/" target="_blank" rel="noopener noreferrer" class="ig-gallery-item">
-          <img src="img/ig_6.jpg" alt="Salto y Movimiento" loading="lazy">
-          <div class="ig-gallery-overlay">
-            <i data-lucide="instagram" width="26" height="26"></i>
-            <span>VER EN INSTAGRAM ↗</span>
-          </div>
-        </a>
-      </div>
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div class="elfsight-app-14224253-dcc5-4487-bcc9-da0b5608db01" data-elfsight-app-lazy></div>
     </div>
 
     <!-- CTA Instagram -->
